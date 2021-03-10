@@ -11,7 +11,7 @@ with others or build on others’ ideas
   ![example 1](./assets/wireframes/non-login.png)
 
   ### Signup/Login
-  ![example 2](./assets/wireframes/signup:login.png)
+  ![example 2](./assets/wireframes/signup_login.png)
 
   ### Options
   ![example 3](./assets/wireframes/view_options.png)
