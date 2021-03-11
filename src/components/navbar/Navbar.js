@@ -1,13 +1,14 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom"
+import logo from '../../logo.png'
 
 const Navbar = (props) => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
-          <Link className="navbar-brand" to="/">
-            SWIRV
+          <Link className="logo" to="/">
+          <img src={logo} height="50px" alt="Swirv logo"></img>
           </Link>
           <button
             className="navbar-toggler"
