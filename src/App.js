@@ -8,8 +8,25 @@ const App = () => {
     <Router>
       <div>
         <Layout />
-        <div className="particles">
-          <Particles />
+        <div >
+          <Particles params={{
+              "particles": {
+                  "number": {
+                      "value": 75
+                  },
+                  "size": {
+                      "value": 3
+                  }
+              },
+              "interactivity": {
+                  "events": {
+                      "onhover": {
+                          "enable": true,
+                          "mode": "repulse"
+                      }
+                  }
+              }
+          }}/>
         </div>
       </div>
     </Router>
