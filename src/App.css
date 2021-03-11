@@ -3,9 +3,10 @@ body {
   background-color: #3498db;
 }
 
-.particles {
+.tsparticles-canvas-el {
   position: absolute;
   top: 0;
+  left: 0;
   z-index: -1;
-  height: fit-content;
+  width: 99vw;
 }
