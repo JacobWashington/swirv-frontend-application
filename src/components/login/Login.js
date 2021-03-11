@@ -41,29 +41,34 @@ const Login = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <lable htmlFor="email">Email</lable>
-          <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            onChange={handleEmail}
-          />
-        </div>
-        <div>
-          <lable htmlFor="password">Password</lable>
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={handlePassword}
-          />
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+    <>
+    <form onSubmit={handleSubmit}>
+      <div class="box">
+        <h1>Log In</h1>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onFocus="field_focus(this, 'email');"
+          onblur="field_blur(this, 'email');"
+          className="form_input"
+          onChange={handleEmail}
+        />
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onFocus="field_focus(this, 'password');"
+          onblur="field_blur(this, 'password');"
+          className="form_input"
+          onChange={handlePassword}
+        />
+        <button type="submit" id="btn">Submit</button>
+        <p>Need an account?<a href="/signup"><p>Signup</p></a></p>
+      </div>
+    </form>
+  </>
   );
 };
 
