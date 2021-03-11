@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../../utils/setAuthToken";
+import { Redirect } from 'react-router-dom';
 
 const { REACT_APP_SERVER_URL } = process.env;
 
@@ -39,6 +40,8 @@ const Login = (props) => {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
+
+  if (props.user) return <Redirect to="/profile" /> // double check
 
   return (
     <>
