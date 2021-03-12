@@ -5,7 +5,7 @@ const {REACT_APP_SERVER_URL} = process.env;
 const NewEpisode = (props) => {
     const [episodeName, setEpisodeName] = useState("");
     const [content, setContent] = useState("")
-    const [storylineId, setStorylineId] = useState("")
+    // const [storylineId, setStorylineId] = useState("")
 
     
 
@@ -18,7 +18,7 @@ const NewEpisode = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        let payload = {storyLineId: storylineId, title: episodeName, content: content}
+        let payload = {storyLineId: "6046bc013ea2e13bbc938917", title: episodeName, content: content}
         axios
         .post(`${REACT_APP_SERVER_URL}/episodes/`, payload)
         .then((response) => {
@@ -29,10 +29,10 @@ const NewEpisode = (props) => {
             alert("Something went wrong Please try again");
         });
     }
-    console.log("NEWEPISODE.js - PROPS.USER>>>>>", props)
-    useEffect(()=> {
-        setStorylineId(props.storylineId)
-    },[])
+    // console.log("NEWEPISODE.js - PROPS.USER>>>>>", props)
+    // useEffect(()=> {
+    //     setStorylineId(props.storylineId)
+    // },[])
 
     return (
         <div>
