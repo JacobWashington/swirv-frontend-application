@@ -12,8 +12,7 @@ const NewEpisode = (props) => {
     const handleEpisodeName = (e) => {
         setEpisodeName(e.target.value)
     }
-    const handleContent = (e) => {
-        setContent(e.target.value)
+    const handleContent = (e) => {        setContent(e.target.value)
     }
     const handleSubmit = (e) => {
         e.preventDefault()
