@@ -35,8 +35,8 @@ const Storyline = (props) => {
     }, [props.location.state.episodes])
     console.log("Storyline.js - PROPS >>>>", props)
 
-    let i = 0;
 
+    let i = 0;
     const episodes = epId.map((ep, index)=> {
         i+=1
         return (
@@ -47,11 +47,13 @@ const Storyline = (props) => {
                 }}
                 key={index}
                 >
-                    <p>Episode {i}</p>
+                    <p>Episode - {i}</p>
                 </Link>
             </div>
         )
     })
+
+
 
     const storylineTitle = props.location.state.title
 
@@ -59,29 +61,49 @@ const Storyline = (props) => {
     let history = useHistory();
 
     const storylineId = {storylineId: props.location.state._id}
+    console.log("CHEKCING IF BRANCHED", props)
     
     const handleOffer = async ()=> {
-        const offering = await axios.post('http://localhost:8000/swirv/theGreatAttractor', storylineId)
+        if (props.location.state.branchedFromStorylineId){
+            alert("Cannot offer storylines obtained by branching")
+        } else {
+            await axios.post('http://localhost:8000/swirv/theGreatAttractor', storylineId)
+            // axios.post(`${REACT_APP_SERVER_URL}/theGreatAttrac]tor`, storylineId)
+            alert("Storyline was offered!")
+            history.goBack()
+        }
+    }
+
+    const forBranch = {storylineId: props.location.state._id,title: props.location.state.title, __id:currentUser.id}
+    console.log("FOR BRANCH >>>>", forBranch)
+
+    const handleBranch = async ()=> {
+        await axios.post('http://localhost:8000/swirv/storylines/createbranch', forBranch)
         // axios.post(`${REACT_APP_SERVER_URL}/theGreatAttrac]tor`, storylineId)
-        console.log("OFFERING >>>" ,offering)
-        alert("Storyline was offered!")
+        alert("Storyline was branched!")
+        history.goBack()
+    }
+    
+    const handleDelete = async ()=> {
+        await axios.post(`http://localhost:8000/swirv/storylines/del/${props.location.state._id}`)
+        // axios.post(`${REACT_APP_SERVER_URL}/theGreatAttrac]tor`, storylineId)
+        alert("Storyline was deleted!")
         history.goBack()
     }
 
-    // if (props.location.state.authId == currentUser.id)
+    const offerDeleteOrBranch = (props.location.state.authId === currentUser.id)
 
-    // {storyline.length ? storyline : <p>Loading...</p>}
-    // {props.location.state.authid === currentUser.id ? <button className="btn" onClick={() => history.goBack()}>Return</button> :}
-    const canOffer = (props.location.state.authId === currentUser.id)
 
-    console.log("CANOFFER", canOffer)
     return (
         <div>
             <h2>Storyline: {storylineTitle}</h2>
             <h3>Episodes:</h3>
             {episodes}
             <br />
-            {canOffer ? <button className="btn" onClick={() => handleOffer()}>Offer</button> : <p></p>}
+            {offerDeleteOrBranch ? <button className="btn" onClick={() => handleOffer()}>Offer</button> :
+            <button className="btn" onClick={() => handleBranch()}>Branch</button>}
+            <br />
+            {offerDeleteOrBranch ? <button className="btn" onClick={() => handleDelete()}>Delete Storyline</button> : <p></p>}
             <br />
             <button className="btn" onClick={() => history.goBack()}>Return</button>
         </div>
