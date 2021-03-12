@@ -2,3 +2,11 @@ body {
   text-align: center;
   background-color: #3498db;
 }
+
+.tsparticles-canvas-el {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 99vw;
+}
