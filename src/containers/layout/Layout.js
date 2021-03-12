@@ -9,6 +9,8 @@ import Navbar from "../../components/navbar/Navbar";
 import Login from "../../components/login/Login";
 import Signup from "../../components/signup/Signup";
 import Profile from "../../components/profile/Profile";
+import StorylineView from "../../components/storylines/storyline/StorylineView";
+
 
 const Layout = (props) => {
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -73,6 +75,7 @@ const Layout = (props) => {
             />
           )}
         />
+        <StorylineView />
         <Route path="/signup" component={Signup} />
         <PrivateRoute
           path="/profile"
