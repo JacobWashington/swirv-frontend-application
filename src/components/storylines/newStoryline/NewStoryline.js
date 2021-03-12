@@ -1,6 +1,6 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import axios from 'axios'
-import REACT_APP_SERVER_URL from process.env
+const {REACT_APP_SERVER_URL} = process.env;
 
 const NewStoryline = () => {
     const [storylineName, setStorylineName] = useState("");
