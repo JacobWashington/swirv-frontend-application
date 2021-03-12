@@ -34,10 +34,9 @@ const Layout = (props) => {
       />
     );
   };
-  const token = jwt_decode(localStorage.getItem("jwtToken"))
-  const userId = token.id
+ 
 
-  console.log("Layout.js - props >>>>", userId)
+
 
   const [currentUser, setCurrentUser] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(true);
