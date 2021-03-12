@@ -1,6 +1,22 @@
 body {
   text-align: center;
-  background-color: #022D33;
+  background: rgb(2, 45, 51);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 45, 51, 1) 0%,
+    rgba(0, 46, 54, 1) 25%,
+    rgb(0, 54, 63) 50%,
+    rgba(0, 46, 54, 1) 75%,
+    rgba(2, 45, 51, 1) 100%
+  );
+  /* background: rgb(2, 45, 51);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 45, 51, 1) 0%,
+    rgba(0, 55, 64, 1) 25%,
+    rgba(0, 55, 64, 1) 75%,
+    rgba(4, 72, 82, 1) 100%
+  ); */
 }
 
 .tsparticles-canvas-el {
