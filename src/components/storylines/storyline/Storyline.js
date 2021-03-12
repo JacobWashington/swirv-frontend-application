@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 
 
 
@@ -34,14 +35,15 @@ const Storyline = (props) => {
     const storylineTitle = props.location.state.title
 
     console.log("Storyline.js - EPID >>>>>", epId)
-
+    let history = useHistory();
     return (
         <div>
             <h2>Storyline: {storylineTitle}</h2>
             <h3>Episodes:</h3>
             {episodes}
-            <Link to='/storylines'>RETURN</Link>
 
+            <br />
+            <button className="btn" onClick={() => history.goBack()}>Return</button>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 
 
 const Episode = (state) => {
@@ -25,7 +26,7 @@ const Episode = (state) => {
     }, [epId])
     
     console.log("Episode.js - STATE >>>>>", state)
-
+    let history = useHistory();
 
     return (
         <div>
@@ -33,8 +34,9 @@ const Episode = (state) => {
             <h2>Title: {title}</h2>
             <br />
             <p>{content}</p>
-            {/* <Link to='/storylines'>RETURN</Link> */}
-            <Link to='/storylines'>RETURN</Link>
+
+            <br />
+            <button className="btn" onClick={() => history.goBack()}>Return</button>
         </div>
     );
 }

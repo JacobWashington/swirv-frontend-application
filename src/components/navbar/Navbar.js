@@ -33,6 +33,11 @@ const Navbar = (props) => {
                   About
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" exact to="/storylines">
+                  Storylines
+                </NavLink>
+              </li>
               {props.isAuth ? (
                 <>
                   <li className={"nav-item"}>

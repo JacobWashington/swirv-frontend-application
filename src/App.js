@@ -5,7 +5,7 @@ import Particles from "react-particles-js";
 
 const App = (props) => {
   return (
-    <Router>
+
       <div>
         <Layout />
         <Particles
@@ -29,7 +29,7 @@ const App = (props) => {
         }}
         />
       </div>
-    </Router>
+
   );
 };
 export default App;
