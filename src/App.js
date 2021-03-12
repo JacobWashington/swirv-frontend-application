@@ -6,6 +6,7 @@ import Particles from "react-particles-js";
 const App = (props) => {
   return (
 
+    
       <div>
         <Layout />
         <Particles
