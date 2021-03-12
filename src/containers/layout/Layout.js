@@ -11,6 +11,8 @@ import Login from "../../components/login/Login";
 import Signup from "../../components/signup/Signup";
 import Profile from "../../components/profile/Profile";
 import About from "../../components/about/About";
+import NewEpisode from "../../components/episodes/newEpisode/NewEpisode";
+import NewStoryline from "../../components/storylines/newStoryline/NewStoryline";
 
 const Layout = (props) => {
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -77,6 +79,8 @@ const Layout = (props) => {
         />
         <Route path="/signup" component={Signup} />
         <Route path="/about" component={About} />
+        <Route path="/newepisode" component={NewEpisode} />
+        <Route path="/newstoryline" component={NewStoryline} />
         <PrivateRoute
           path="/profile"
           component={Profile}

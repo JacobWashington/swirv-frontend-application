@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import axios from "axios";
+const {REACT_APP_SERVER_URL} = process.env;
 
 const NewEpisode = (props) => {
     const [episodeName, setEpisodeName] = useState("");
@@ -8,14 +10,13 @@ const NewEpisode = (props) => {
     
 
     const handleEpisodeName = (e) => {
-        setEpisodeName(e.taget.value)
+        setEpisodeName(e.target.value)
     }
     const handleContent = (e) => {
-        setContent(e.taget.value)
+        setContent(e.target.value)
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        setStorylineId(props.storylineId)
         let payload = {storyLineId: storylineId, title: episodeName, content: content}
         axios
         .post(`${REACT_APP_SERVER_URL}/episodes/`, payload)
@@ -46,8 +47,8 @@ const NewEpisode = (props) => {
                     /> 
                       <input
                     type="textarea"
-                    name="episodeName"
-                    placeholder="Episode Name"            
+                    name="episodeContent"
+                    placeholder="Episode Content"            
                     className="form_input"
                     onChange={handleContent}                    
                     />            
