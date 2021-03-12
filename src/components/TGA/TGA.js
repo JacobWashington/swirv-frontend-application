@@ -2,28 +2,21 @@ import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "./Profile.css"
 
-const Profile = (props) => {
+const TGA = (props) => {
 
     const [storylines, setStorylines] = useState([])
-    const [authId, setAuthId] = useState("");
     useEffect(() => {
         const fetchStories = async () => {
-            setAuthId(props.user.id)
-            const user = { authId: props.user.id}
-            const response = await axios.post('http://localhost:8000/swirv/storylines/fromuser', user);
+            const response = await axios.get('http://localhost:8000/swirv/theGreatAttractor');
             const data = response.data;
  
             setStorylines(data);
-
         }
         fetchStories();
     }, [])
 
     console.log("CHECKING",storylines)
-    console.log("props_authId >>>>", authId)
-    const {  name, email } = props.user
 
     const storyline = storylines.map((storyline, index)=> {
         return (
@@ -43,14 +36,12 @@ const Profile = (props) => {
     return (
         <div>
             <br />
-            <h2>{name}'s Profile</h2>
+            <h2>The Great Attractor</h2>
             <br />
-            <p>name: {name}</p>
-            <p>email: {email}</p>
-            <h3>Your Storylines:</h3>
+            <h3>Storylines:</h3>
             {storyline.length ? storyline : <p>Loading...</p>}
         </div>
     );
 }
 
-export default Profile;
+export default TGA;
