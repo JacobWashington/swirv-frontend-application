@@ -21,8 +21,6 @@ const StorylineView = () => {
         fetchStories();
     }, [])
 
-    console.log(storylines)
-
     return (
         <div>
         <Route exact path='/storylines' render={(props)=><Storylines {...props} storylines={storylines} />} />

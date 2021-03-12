@@ -10,10 +10,11 @@ import Navbar from "../../components/navbar/Navbar";
 import Login from "../../components/login/Login";
 import Signup from "../../components/signup/Signup";
 import Profile from "../../components/profile/Profile";
-import StorylineView from "../../components/storylines/storyline/StorylineView";
 import About from "../../components/about/About";
 import NewEpisode from "../../components/episodes/newEpisode/NewEpisode";
 import NewStoryline from "../../components/storylines/newStoryline/NewStoryline";
+import StorylineView from "../../components/storylines/storyline/StorylineView";
+
 
 
 const Layout = (props) => {
@@ -33,6 +34,10 @@ const Layout = (props) => {
       />
     );
   };
+  const token = jwt_decode(localStorage.getItem("jwtToken"))
+  const userId = token.id
+
+  console.log("Layout.js - props >>>>", userId)
 
   const [currentUser, setCurrentUser] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -79,11 +84,11 @@ const Layout = (props) => {
             />
           )}
         />
-        <StorylineView />
         <Route path="/signup" component={Signup} />
         <Route path="/about" component={About} />
         <Route path="/newepisode" component={NewEpisode} />
         <Route path="/newstoryline" component={NewStoryline} />
+        <StorylineView />
         <PrivateRoute
           path="/profile"
           component={Profile}

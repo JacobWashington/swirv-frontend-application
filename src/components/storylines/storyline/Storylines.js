@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Storylines = (props) => {
     // const { title, authId } = props.storyline;
-    console.log("This", props)
+    console.log("Storylines.js - PROPS >>>>", props)
 
     const storyline = props.storylines.map((storyline, index)=> {
         return (
@@ -19,10 +19,11 @@ const Storylines = (props) => {
             </div>
         )
     })
-    console.log(">>>storyline<<<", storyline)
-    console.log(">>>Checking storyline[0]<<<", props.storylines[0])
+    console.log("Storylines.js - STORYLINE >>>>", storyline)
+
     return (
         <div className="link">
+            <h3>Storylines :</h3>
            {storyline.length ? storyline : <p>Loading...</p>}
         </div>
     )
