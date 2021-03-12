@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, Route, useHistory  } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../../../utils/setAuthToken";
+import Episode from './Episode';
+import NewEpisode from '../../episodes/newEpisode/NewEpisode'
 const { REACT_APP_SERVER_URL } = process.env;
 
 
@@ -99,6 +100,14 @@ const Storyline = (props) => {
             <h2>Storyline: {storylineTitle}</h2>
             <h3>Episodes:</h3>
             {episodes}
+            <br />
+            <Route path="/newepisode" component={NewEpisode} />
+            <Link to={{
+                    pathname: "/newepisode",
+                    state: props.location.state
+                }}>
+                    <h3>Create New Episode</h3>
+            </Link>
             <br />
             {offerDeleteOrBranch ? <button className="btn" onClick={() => handleOffer()}>Offer</button> :
             <button className="btn" onClick={() => handleBranch()}>Branch</button>}

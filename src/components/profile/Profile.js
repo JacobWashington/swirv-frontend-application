@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import NewStoryline from '../storylines/newStoryline/NewStoryline'
 import "./Profile.css"
 
 const Profile = (props) => {
@@ -49,6 +50,14 @@ const Profile = (props) => {
             <p>email: {email}</p>
             <h3>Your Storylines:</h3>
             {storyline.length ? storyline : <p>Loading...</p>}
+            <Route path="/newstoryline" component={NewStoryline} />
+            <Link to={{
+                    pathname: "/newstoryline",
+                    state: props.user
+                }}>
+                    <h3>Create New Story</h3>
+            </Link>
+            
         </div>
     );
 }

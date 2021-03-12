@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 const {REACT_APP_SERVER_URL} = process.env;
 
 const NewEpisode = (props) => {
     const [episodeName, setEpisodeName] = useState("");
     const [content, setContent] = useState("")
     const [storylineId, setStorylineId] = useState("")
+    let history = useHistory();
 
+
+    console.log("PROPS >>_>>", props)
     
 
     const handleEpisodeName = (e) => {
@@ -18,11 +22,15 @@ const NewEpisode = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        let payload = {storyLineId: storylineId, title: episodeName, content: content}
+        const creating = {authId: props.location.state.authId, storylineId: props.location.state._id, title: episodeName, content: content}
+        
         axios
-        .post(`${REACT_APP_SERVER_URL}/episodes/`, payload)
+        .post(`${REACT_APP_SERVER_URL}/episodes/`, creating)
         .then((response) => {
             console.log(response)
+            history.goBack()
+            history.goBack()
+
         })
         .catch((error) => {
             console.log("===> Error on NewEpisode -- in handleSubmit()", error);
@@ -33,7 +41,7 @@ const NewEpisode = (props) => {
     useEffect(()=> {
         setStorylineId(props.storylineId)
     },[])
-
+    
     return (
         <div>
             <form onSubmit={handleSubmit}>
