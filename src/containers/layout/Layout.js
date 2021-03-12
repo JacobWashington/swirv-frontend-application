@@ -35,9 +35,6 @@ const Layout = (props) => {
       />
     );
   };
- 
-
-
 
   const [currentUser, setCurrentUser] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(true);
