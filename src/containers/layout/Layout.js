@@ -81,6 +81,7 @@ const Layout = (props) => {
         <Route path="/about" component={About} />
         <Route path="/newepisode" component={NewEpisode} />
         <Route path="/newstoryline" component={NewStoryline} />
+        
         <PrivateRoute
           path="/profile"
           component={Profile}
