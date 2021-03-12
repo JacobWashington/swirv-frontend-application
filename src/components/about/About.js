@@ -1,7 +1,6 @@
 import React from "react";
 import "./About.css";
 import logo from "../../logo.png";
-
 const About = () => {
   return (
     <div className="container">
