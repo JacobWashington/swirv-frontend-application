@@ -38,11 +38,16 @@ const Navbar = (props) => {
                   Storylines
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" exact to="/TGA">
+                  TGA
+                </NavLink>
+              </li>
               {props.isAuth ? (
                 <>
                   <li className={"nav-item"}>
                     <NavLink className={"nav-link"} to={"/profile"}>
-                      Profile{" "}
+                      Profile
                     </NavLink>
                   </li>
                   <li className={"nav-item"}>

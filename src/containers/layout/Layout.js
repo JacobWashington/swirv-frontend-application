@@ -14,6 +14,7 @@ import About from "../../components/about/About";
 import NewEpisode from "../../components/episodes/newEpisode/NewEpisode";
 import NewStoryline from "../../components/storylines/newStoryline/NewStoryline";
 import StorylineView from "../../components/storylines/storyline/StorylineView";
+import TGA from "../../components/TGA/TGA";
 
 
 
@@ -87,7 +88,8 @@ const Layout = (props) => {
         <Route path="/about" component={About} />
         <Route path="/newepisode" component={NewEpisode} />
         <Route path="/newstoryline" component={NewStoryline} />
-        <Route path="/storylineview" component={StorylineView} />
+        <Route path="/tga" component={TGA} />
+
         <PrivateRoute
           path="/profile"
           component={Profile}
