@@ -1,14 +1,28 @@
-html {
-  position: relative;
-  min-height: 100%;
-}
 body {
-  margin-bottom: 60px; /* Margin bottom by footer height */
+  text-align: center;
+  background: rgb(2, 45, 51);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 45, 51, 1) 0%,
+    rgba(0, 46, 54, 1) 25%,
+    rgb(0, 54, 63) 50%,
+    rgba(0, 46, 54, 1) 75%,
+    rgba(2, 45, 51, 1) 100%
+  );
+  /* background: rgb(2, 45, 51);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 45, 51, 1) 0%,
+    rgba(0, 55, 64, 1) 25%,
+    rgba(0, 55, 64, 1) 75%,
+    rgba(4, 72, 82, 1) 100%
+  ); */
 }
-.footer {
+
+.tsparticles-canvas-el {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px; /* Set the fixed height of the footer here */
-  line-height: 60px; /* Vertically center the text there */
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 99vw;
 }

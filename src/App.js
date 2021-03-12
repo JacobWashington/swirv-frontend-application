@@ -1,34 +1,35 @@
-// Imports
-import React, { useEffect, useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
+import "./App.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import Layout from "./containers/layout/Layout";
+import Particles from "react-particles-js";
 
-// CSS
-import './App.css';
-
-// Components
-import Signup from './components/Signup';
-import Login from './components/Login';
-import About from './components/Footer';
-import Footer from './components/Footer';
-import Profile from './components/Profile';
-import Navbar from './components/Navbar';
-import Welcome from './components/Welcome';
-
-function App() {
-  // Set state values
- 
-  useEffect(() => {
-    
-  }, []);
-
+const App = (props) => {
   return (
-    <div className="App">
-      <h1>MERN Authentication</h1>
-      <Signup />
-    </div>
-  );
-}
 
+      <div>
+        <Layout />
+        <Particles
+          params={{
+            "particles": {
+                "number": {
+                    "value": 115
+                },
+                "size": {
+                    "value": 3
+                }
+            },
+            "interactivity": {
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                        "mode": "repulse"
+                    }
+                }
+            }
+        }}
+        />
+      </div>
+
+  );
+};
 export default App;
