@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 
@@ -11,18 +10,9 @@ const Storyline = (props) => {
         if(props.location.state.episodes){
             setEpId(props.location.state.episodes)
         }
-    }, [])
-    console.log("<><><><>", props)
+    }, [props.location.state.episodes])
+    console.log("Storyline.js - PROPS >>>>", props)
 
-    // const titles = [];
-
-    // const getTitle = async (theId) => {
-    //     const response = await axios.get(`http://localhost:8000/swirv/episodes/${theId}`);
-    //     let title = response.data.title
-    //     titles.push(title)
-    // }
-
-    // console.log("TITLES", titles)
     let i = 0;
 
     const episodes = epId.map((ep, index)=> {
@@ -42,6 +32,8 @@ const Storyline = (props) => {
     })
 
     const storylineTitle = props.location.state.title
+
+    console.log("Storyline.js - EPID >>>>>", epId)
 
     return (
         <div>

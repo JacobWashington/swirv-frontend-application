@@ -22,9 +22,9 @@ const Episode = (state) => {
         }
         fetchTitle();
         fetchContent();
-    }, [])
+    }, [epId])
     
-    console.log(">>>STATE<<<", state)
+    console.log("Episode.js - STATE >>>>>", state)
 
 
     return (
