@@ -2,11 +2,30 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
+
+import jwt_decode from "jwt-decode";
+import setAuthToken from "../../../utils/setAuthToken";
 const { REACT_APP_SERVER_URL } = process.env;
 
 
-
 const Storyline = (props) => {
+    
+    const [currentUser, setCurrentUser] = useState("");
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
+  
+    useEffect(() => {
+      let token;
+      if (!localStorage.getItem("jwtToken")) {
+        setIsAuthenticated(false);
+        console.log("====> Authenticated is now FALSE");
+      } else {
+        token = jwt_decode(localStorage.getItem("jwtToken"));
+        setAuthToken(localStorage.getItem("jwtToken"));
+        setCurrentUser(token);
+      }
+    }, []);
+
+    console.log("CURRENTUSER>>>>>" ,currentUser)
 
     const [epId, setEpId] = useState([])
     useEffect(() => {
@@ -49,13 +68,20 @@ const Storyline = (props) => {
         history.goBack()
     }
 
+    // if (props.location.state.authId == currentUser.id)
+
+    // {storyline.length ? storyline : <p>Loading...</p>}
+    // {props.location.state.authid === currentUser.id ? <button className="btn" onClick={() => history.goBack()}>Return</button> :}
+    const canOffer = (props.location.state.authId === currentUser.id)
+
+    console.log("CANOFFER", canOffer)
     return (
         <div>
             <h2>Storyline: {storylineTitle}</h2>
             <h3>Episodes:</h3>
             {episodes}
             <br />
-            <button className="btn" onClick={() => handleOffer()}>Offer</button>
+            {canOffer ? <button className="btn" onClick={() => handleOffer()}>Offer</button> : <p></p>}
             <br />
             <button className="btn" onClick={() => history.goBack()}>Return</button>
         </div>

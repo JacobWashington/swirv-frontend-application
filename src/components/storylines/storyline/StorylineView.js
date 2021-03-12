@@ -10,6 +10,8 @@ const StorylineView = () => {
 
     const [storylines, setStorylines] = useState([])
 
+    
+
     useEffect(() => {
         const fetchStories = async () => {
           const response = await axios.get('http://localhost:8000/swirv/storylines/allfornone');
