@@ -17,6 +17,7 @@ const NewEpisode = (props) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
+
         let payload = {storyLineId: storylineId, title: episodeName, content: content}
         axios
         .post(`${REACT_APP_SERVER_URL}/episodes/`, payload)
@@ -28,7 +29,7 @@ const NewEpisode = (props) => {
             alert("Something went wrong Please try again");
         });
     }
-
+    console.log("NEWEPISODE.js - PROPS.USER>>>>>", props)
     useEffect(()=> {
         setStorylineId(props.storylineId)
     },[])

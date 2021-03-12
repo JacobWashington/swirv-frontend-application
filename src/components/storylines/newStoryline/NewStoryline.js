@@ -2,6 +2,7 @@ import {React, useState, useEffect} from 'react';
 import axios from 'axios'
 const {REACT_APP_SERVER_URL} = process.env;
 
+
 const NewStoryline = () => {
     const [storylineName, setStorylineName] = useState("");
     
@@ -20,6 +21,7 @@ const NewStoryline = () => {
             alert("Something went wrong Please try again");
         });
     }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
