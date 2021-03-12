@@ -10,9 +10,11 @@ import Navbar from "../../components/navbar/Navbar";
 import Login from "../../components/login/Login";
 import Signup from "../../components/signup/Signup";
 import Profile from "../../components/profile/Profile";
+import StorylineView from "../../components/storylines/storyline/StorylineView";
 import About from "../../components/about/About";
 import NewEpisode from "../../components/episodes/newEpisode/NewEpisode";
 import NewStoryline from "../../components/storylines/newStoryline/NewStoryline";
+
 
 const Layout = (props) => {
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -77,6 +79,7 @@ const Layout = (props) => {
             />
           )}
         />
+        <StorylineView />
         <Route path="/signup" component={Signup} />
         <Route path="/about" component={About} />
         <Route path="/newepisode" component={NewEpisode} />
