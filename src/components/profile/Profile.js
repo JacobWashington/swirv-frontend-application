@@ -5,6 +5,8 @@ import { Link, Route } from 'react-router-dom';
 import NewStoryline from '../storylines/newStoryline/NewStoryline'
 import "./Profile.css"
 
+const { REACT_APP_SERVER_URL } = process.env;
+
 const Profile = (props) => {
 
     const [storylines, setStorylines] = useState([])
@@ -13,7 +15,7 @@ const Profile = (props) => {
         const fetchStories = async () => {
             setAuthId(props.user.id)
             const user = { authId: props.user.id}
-            const response = await axios.post('http://localhost:8000/swirv/storylines/fromuser', user);
+            const response = await axios.post(`${REACT_APP_SERVER_URL}/storylines/fromuser`, user);
             const data = response.data;
  
             setStorylines(data);

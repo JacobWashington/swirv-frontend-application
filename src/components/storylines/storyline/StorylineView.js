@@ -6,6 +6,8 @@ import Storylines from './Storylines';
 import Storyline from './Storyline';
 import Episode from './Episode';
 
+const { REACT_APP_SERVER_URL } = process.env;
+
 const StorylineView = () => {
 
     const [storylines, setStorylines] = useState([])
@@ -14,7 +16,7 @@ const StorylineView = () => {
 
     useEffect(() => {
         const fetchStories = async () => {
-          const response = await axios.get('http://localhost:8000/swirv/storylines/allfornone');
+          const response = await axios.get(`${REACT_APP_SERVER_URL}/storylines/allfornone`);
           const data = response.data;
  
           setStorylines(data);
