@@ -68,7 +68,7 @@ const Profile = (props) => {
                     <h3>Create New Story</h3>
             </Link>
             {checktga ?  <button className="btn" onClick={() => handleDestroy()}>CONSUME OFFERINGS</button>:
-            <p>nope</p>}
+            <p></p>}
         </div>
     );
 }
