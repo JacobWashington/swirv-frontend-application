@@ -23,13 +23,13 @@ const Signup = () => {
         .then((response) => {
           console.log("===> Yay, new user");
           console.log(response);
-          // setRedirect(true);
         })
         .catch((error) => console.log("===> Error in Signup", error));
     } else {
       if (password !== confirmPassword) return alert("Passwords don't match");
       alert("Password needs to be at least 8 characters. Please try again.");
     }
+    return <Redirect to="/profile" /> // double check
   };
 
   const handleName = (e) => {
@@ -47,6 +47,8 @@ const Signup = () => {
   const handleConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
+
+
 
   return (
     <>

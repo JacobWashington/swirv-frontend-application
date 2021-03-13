@@ -24,7 +24,7 @@ const Profile = (props) => {
 
     console.log("CHECKING",storylines)
     console.log("props_authId >>>>", authId)
-    const {  name, email } = props.user
+    const {  name } = props.user
 
     const storyline = storylines.map((storyline, index)=> {
         return (
@@ -44,12 +44,10 @@ const Profile = (props) => {
     return (
         <div>
             <br />
-            <h2>{name}'s Profile</h2>
+            <h2>{name}'s Page</h2>
             <br />
-            <p>name: {name}</p>
-            <p>email: {email}</p>
             <h3>Your Storylines:</h3>
-            {storyline.length ? storyline : <p>Loading...</p>}
+            {storyline.length ? storyline : <p>Empty...</p>}
             <Route path="/newstoryline" component={NewStoryline} />
             <Link to={{
                     pathname: "/newstoryline",
