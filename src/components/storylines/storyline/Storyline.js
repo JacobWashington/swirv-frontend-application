@@ -65,7 +65,7 @@ const Storyline = (props) => {
     const handleOffer = async ()=> {
         if (props.location.state.branchedFromStorylineId){
             // if it was branched instead of created by user
-            alert("⚠️Cannot offer storylines obtained by branching")
+            alert("⚠️ Cannot offer storylines obtained by branching")
         } else {
             alert("Storyline was Consumed by ⚫️The Great Attractor⚫️!")
             history.goBack()
