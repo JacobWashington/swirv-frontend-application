@@ -1,6 +1,8 @@
-import {React, useState} from 'react';
+import {React, useState, useEffect } from 'react';
 import axios from 'axios'
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "../../../utils/setAuthToken";
 const {REACT_APP_SERVER_URL} = process.env;
 
 
@@ -10,12 +12,29 @@ const NewStoryline = (props) => {
     console.log("USER ID >>>>>", userId)
     const [storylineName, setStorylineName] = useState("");
     let history = useHistory();
+
+    const [currentUser, setCurrentUser] = useState("");
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
+  
+    useEffect(() => {
+      let token;
+      if (!localStorage.getItem("jwtToken")) {
+        setIsAuthenticated(false);
+        console.log("====> Authenticated is now FALSE");
+      } else {
+        token = jwt_decode(localStorage.getItem("jwtToken"));
+        setAuthToken(localStorage.getItem("jwtToken"));
+        setCurrentUser(token);
+      }
+    }, []);
+    console.log("CURRENT USER >>>", currentUser)
+
     
     const handleStorylineName = (e) => {
         setStorylineName(e.target.value)
     }
 
-    const infoForStoryline = {authId: userId, title:storylineName}
+    const infoForStoryline = {authId: userId, title:`${storylineName} - by ${currentUser.name}`}
 
     const handleSubmit = (e) => {
         e.preventDefault()
