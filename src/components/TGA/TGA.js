@@ -39,7 +39,7 @@ const TGA = (props) => {
             <h2>The Great Attractor</h2>
             <br />
             <h3>Storylines:</h3>
-            {storyline.length ? storyline : <p>Empty...</p>}
+            {storyline.length ? storyline : <p>Need more offerings...</p>}
         </div>
     );
 }
