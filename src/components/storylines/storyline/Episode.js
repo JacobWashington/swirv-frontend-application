@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "../../../utils/setAuthToken";
 
 
 const Episode = (state) => {
@@ -9,21 +11,33 @@ const Episode = (state) => {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [auth, setAuth] = useState('');
+    
 
     useEffect(() => {
-        const fetchTitle = async () => {
+        const fetchEpInfo = async () => {
           const response = await axios.get(`http://localhost:8000/swirv/episodes/${epId}`);
-          const theTitle = response.data.title;
-          setTitle(theTitle)
+          setTitle(response.data.title)
+          setContent(response.data.content)
+          setAuth(response.data.authId)
         }
-        const fetchContent = async () => {
-          const response = await axios.get(`http://localhost:8000/swirv/episodes/${epId}`);
-          const theContent= response.data.content;
-          setContent(theContent)
-        }
-        fetchTitle();
-        fetchContent();
+        fetchEpInfo();
     }, [epId])
+
+    const [currentUser, setCurrentUser] = useState("");
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
+  
+    useEffect(() => {
+      let token;
+      if (!localStorage.getItem("jwtToken")) {
+        setIsAuthenticated(false);
+        console.log("====> Authenticated is now FALSE");
+      } else {
+        token = jwt_decode(localStorage.getItem("jwtToken"));
+        setAuthToken(localStorage.getItem("jwtToken"));
+        setCurrentUser(token);
+      }
+    }, []);
 
     const handleDelete = async ()=> {
       const payload = {episodeId : epId}
@@ -32,8 +46,7 @@ const Episode = (state) => {
       history.goBack()
       history.goBack()
   }
-    
-    console.log("Episode.js - STATE >>>>>", state)
+    const canDelete = (auth === currentUser.id)
     let history = useHistory();
     // const offerDeleteOrBranch = (props.location.state.authId === currentUser.id)
     return (
@@ -43,8 +56,7 @@ const Episode = (state) => {
             <br />
             <p>{content}</p>
             <br />
-            <button className="btn" onClick={() => handleDelete()}>Delete Episode</button>
-            {/* {offerDeleteOrBranch ? <button className="btn" onClick={() => handleDelete()}>Delete Episode</button> : <p></p>} */}
+            {canDelete ? <button className="btn" onClick={() => handleDelete()}>Delete Episode</button> : <p></p>}
             <br />
             <button className="btn" onClick={() => history.goBack()}>Return</button>
         </div>

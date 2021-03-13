@@ -25,29 +25,29 @@ const Navbar = (props) => {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <NavLink className="nav-link" exact to="/">
-                  Home
+                  🏠Home
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/about">
-                  About
+                  ℹ️About
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" exact to="/storylines">
-                  Storylines
+                  🖊Featured Storylines
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" exact to="/TGA">
-                  TGA
+                  ⚫️TGA
                 </NavLink>
               </li>
               {props.isAuth ? (
                 <>
                   <li className={"nav-item"}>
                     <NavLink className={"nav-link"} to={"/profile"}>
-                      Profile
+                    ✏️Your Creations
                     </NavLink>
                   </li>
                   <li className={"nav-item"}>
@@ -55,7 +55,7 @@ const Navbar = (props) => {
                       onClick={props.handleLogout}
                       className={"nav-link logout-link"}
                     >
-                      Logout
+                      ✋Logout
                     </span>
                   </li>
                 </>

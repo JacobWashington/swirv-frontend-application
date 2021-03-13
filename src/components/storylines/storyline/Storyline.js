@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../../../utils/setAuthToken";
-import Episode from './Episode';
 import NewEpisode from '../../episodes/newEpisode/NewEpisode'
 const { REACT_APP_SERVER_URL } = process.env;
 
@@ -61,21 +60,22 @@ const Storyline = (props) => {
     console.log("Storyline.js - EPID >>>>>", epId)
     let history = useHistory();
 
-    const storylineId = {storylineId: props.location.state._id}
-    console.log("CHEKCING IF BRANCHED", props)
+    const offering = {storylineId: props.location.state._id, title: `${String(props.location.state.title)} - TGA`}
     
     const handleOffer = async ()=> {
         if (props.location.state.branchedFromStorylineId){
-            alert("Cannot offer storylines obtained by branching")
+            // if it was branched instead of created by user
+            alert("⚠️Cannot offer storylines obtained by branching")
         } else {
-            await axios.post('http://localhost:8000/swirv/theGreatAttractor', storylineId)
-            // axios.post(`${REACT_APP_SERVER_URL}/theGreatAttrac]tor`, storylineId)
-            alert("Storyline was offered!")
+            alert("Storyline was Consumed by ⚫️The Great Attractor⚫️!")
             history.goBack()
+            console.log("clicked >>>>")
+            await axios.post('http://localhost:8000/swirv/theGreatAttractor', offering)
+            // axios.post(`${REACT_APP_SERVER_URL}/theGreatAttrac]tor`, storylineId)
         }
     }
 
-    const forBranch = {storylineId: props.location.state._id,title: props.location.state.title, __id:currentUser.id}
+    const forBranch = {storylineId: props.location.state._id,title: (`${props.location.state.title} - branched by ${currentUser.name}`), __id:currentUser.id}
     console.log("FOR BRANCH >>>>", forBranch)
 
     const handleBranch = async ()=> {
@@ -102,12 +102,15 @@ const Storyline = (props) => {
             {episodes}
             <br />
             <Route path="/newepisode" component={NewEpisode} />
+            {offerDeleteOrBranch ? 
             <Link to={{
                     pathname: "/newepisode",
                     state: props.location.state
                 }}>
                     <h3>Create New Episode</h3>
-            </Link>
+            </Link> : <p></p>}
+           
+
             <br />
             {offerDeleteOrBranch ? <button className="btn" onClick={() => handleOffer()}>Offer</button> :
             <button className="btn" onClick={() => handleBranch()}>Branch</button>}

@@ -24,7 +24,7 @@ const Storylines = (props) => {
     return (
         <div className="link">
             <h3>Storylines :</h3>
-           {storyline.length ? storyline : <p>Loading...</p>}
+           {storyline.length ? storyline : <p>Empty...</p>}
         </div>
     )
 }
