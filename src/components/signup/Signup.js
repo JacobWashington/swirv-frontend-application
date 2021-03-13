@@ -10,6 +10,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,14 +23,14 @@ const Signup = () => {
         .then((response) => {
           console.log("===> Yay, new user");
           console.log(response);
-          // if (email === "tga@email.com"){axios.post(`${REACT_APP_SERVER_URL}/users/makesuper`, response.data)}
+          setRedirect(true);
         })
         .catch((error) => console.log("===> Error in Signup", error));
     } else {
       if (password !== confirmPassword) return alert("Passwords don't match");
       alert("Password needs to be at least 8 characters. Please try again.");
     }
-    return <Redirect to="/profile" /> // double check
+
   };
 
   const handleName = (e) => {
@@ -48,7 +49,7 @@ const Signup = () => {
     setConfirmPassword(e.target.value);
   };
 
-
+  if (redirect) return <Redirect to="/login" />
 
   return (
     <>
