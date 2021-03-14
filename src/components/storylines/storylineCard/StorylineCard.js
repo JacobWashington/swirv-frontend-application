@@ -10,24 +10,27 @@ const StorylineCard = (props) => {
   const [title, setTitle] = useState("");
   const [storylineId, setStorylineId] = useState("");
 
-  useEffect(async () => {
-    await setStorylineId(props.id);
+  useEffect(() => {
     const fetchStoryline = async (req, res) => {
-      const storyline = await axios.get(`${REACT_APP_SERVER_URL}/storylines/${storylineId}`);
-      setTitle(storyline.title);
+      await setStorylineId(props.id);
+      const storyline = await axios.get(
+        `${REACT_APP_SERVER_URL}/storylines/${props.id}`
+      );
+      await setTitle(storyline.data.title);
     };
+    fetchStoryline();
   }, []);
 
   return (
     <>
-      <li key={props.index}>
+      <li>
         <Link
           to={{
             pathname: `/storylines/${title}/${storylineId}`,
             state: storylineId,
           }}
         >
-          <p>{title}</p>
+          {title ? <p>{title}</p> : <p>Untitled Story</p>}
         </Link>
       </li>
     </>

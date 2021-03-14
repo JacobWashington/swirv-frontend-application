@@ -14,6 +14,8 @@ const TGA = (props) => {
       const TGA = await axios.get(
         `${REACT_APP_SERVER_URL}/users/604db56873b61c2f301ed199`
       );
+      console.log("!!!!!!!! INSIDE TGA !!!!!!!!!!!", TGA);
+      console.log(TGA.data);
       setAuthId(TGA.data._id);
     };
     fetchTGA();
@@ -24,7 +26,7 @@ const TGA = (props) => {
       <div className="background"></div>
       <div className="content">
         <p>The Great Attractor</p>
-        <StorylinesList auth={authId} />
+        {authId ? <StorylinesList auth={authId} /> : null}
       </div>
     </div>
   );

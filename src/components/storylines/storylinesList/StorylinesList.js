@@ -1,10 +1,10 @@
 import StorylineCard from "../storylineCard/StorylineCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-const { REACT_APP_SERVER_URL } = process.env
+const { REACT_APP_SERVER_URL } = process.env;
 
 const StorylinesList = (props) => {
-  const [authId, setAuthId] = useState("");
+  const [authId, setAuthId] = useState(props.auth);
   const [storiesArr, setStoriesArr] = useState([]);
 
   let mappedStoryline;
@@ -12,17 +12,21 @@ const StorylinesList = (props) => {
   // search for all storylines where storyline.authId == authId
   // assign stories to state
   useEffect(() => {
-    // const fetchStories = async (req,res) => {
-    //   const stories = await axios.get(`${REACT_APP_SERVER_URL}/storylines/all/${authId}`);
-    //   setStoriesArr(stories.data);
-    // }
-    // fetchStories();
+    const fetchStories = async (req, res) => {
+      const stories = await axios.get(
+        `${REACT_APP_SERVER_URL}/storylines/all/${props.auth}`
+      );
+      setStoriesArr(stories.data);
+    };
+    fetchStories();
   }, []);
 
   // maps each item in storiesArr, returning a dynamic card component for each story
-if(storiesArr.length > 0){  mappedStoryline = storiesArr.map((storyline, index) => {
-    return <StorylineCard id={storyline.id} index={index} />;
-  });}
+  if (storiesArr.length > 0) {
+    mappedStoryline = storiesArr.map((storyline, index) => {
+      return <StorylineCard id={storyline._id} key={index} />;
+    });
+  }
 
   return (
     <div className="storylines-list">
