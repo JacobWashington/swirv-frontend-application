@@ -39,7 +39,7 @@ const Navbar = (props) => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" exact to="/TGA">
+                <NavLink className="nav-link" exact to="/thegreatattractor">
                   ⚫️TGA
                 </NavLink>
               </li>
