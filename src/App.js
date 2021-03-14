@@ -4,33 +4,32 @@ import Layout from "./containers/layout/Layout";
 import Particles from "react-particles-js";
 
 const App = (props) => {
+  const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+  console.log(REACT_APP_SERVER_URL);
   return (
-
-    
-      <div>
-        <Layout />
-        <Particles
-          params={{
-            "particles": {
-                "number": {
-                    "value": 115
-                },
-                "size": {
-                    "value": 3
-                }
+    <div>
+      <Layout />
+      <Particles
+        params={{
+          particles: {
+            number: {
+              value: 115,
             },
-            "interactivity": {
-                "events": {
-                    "onhover": {
-                        "enable": false,
-                        "mode": "repulse"
-                    }
-                }
-            }
+            size: {
+              value: 3,
+            },
+          },
+          interactivity: {
+            events: {
+              onhover: {
+                enable: false,
+                mode: "repulse",
+              },
+            },
+          },
         }}
-        />
-      </div>
-
+      />
+    </div>
   );
 };
 export default App;

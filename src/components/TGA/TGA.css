@@ -1,0 +1,50 @@
+.background {
+    position: absolute;
+    top: 10vh;
+    background-color: aliceblue;
+    border-radius: 10px;
+    opacity: 0.9;
+    width: 90vw;
+    height: 65vh;
+    left: calc(50% - 45vw);
+  }
+  
+  .content {
+    z-index: 1;
+    position: relative;
+    top: 2vh;
+  }
+  
+  .link {
+    width: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    color: #343434;
+  }
+  
+  @media only screen and (min-width: 600px) {
+    .background {
+      position: absolute;
+      top: 12vh;
+      background-color: aliceblue;
+      border-radius: 10px;
+      width: 45vw;
+      height: 50vh;
+      left: calc(50% - 22.5vw);
+    }
+  
+    .content {
+      z-index: 1;
+      position: relative;
+      top: 2vh;
+    }
+  
+    .link {
+      width: 40vw;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: bold;
+    }
+  }
+  

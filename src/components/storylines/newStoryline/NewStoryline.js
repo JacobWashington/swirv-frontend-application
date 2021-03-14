@@ -42,7 +42,7 @@ const NewStoryline = (props) => {
         .post(`${REACT_APP_SERVER_URL}/storylines`, infoForStoryline)
         .then((response) => {
             console.log(response)
-            history.goBack()
+            // history.goBack()
         })
         .catch((error) => {
             console.log("===> Error on NewStoryline -- in handleSubmit()", error);
@@ -53,7 +53,7 @@ const NewStoryline = (props) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <div class="box">
+                <div className="box">
                     <h1>Create New Storyline</h1>
                     <input
                     type="text"
