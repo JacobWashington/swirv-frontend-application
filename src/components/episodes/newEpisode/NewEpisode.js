@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 const {REACT_APP_SERVER_URL} = process.env;
 
 const NewEpisode = (props) => {
+    console.log("STORYLINE ID >>>", props.location.state._id)
     const [episodeName, setEpisodeName] = useState("");
     const [content, setContent] = useState("");
-    const [storylineId, setStorylineId] = useState("");
     let history = useHistory();
 
     console.log("PROPS >>_>>", props)
@@ -15,14 +15,14 @@ const NewEpisode = (props) => {
     const handleEpisodeName = (e) => {
         setEpisodeName(e.target.value)
     }
-    const handleContent = (e) => {        setContent(e.target.value)
+    const handleContent = (e) => {        
+        setContent(e.target.value)
     }
     const handleSubmit = (e) => {
         e.preventDefault()
 
         const creating = {authId: props.location.state.authId, storylineId: props.location.state._id, title: episodeName, content: content}
         
-        let payload = {storyLineId: "6046bc013ea2e13bbc938917", title: episodeName, content: content};
         axios
         .post(`${REACT_APP_SERVER_URL}/episodes/`, creating)
         .then((response) => {
@@ -38,9 +38,6 @@ const NewEpisode = (props) => {
     }
     
     console.log("NEWEPISODE.js - PROPS.USER>>>>>", props)
-    useEffect(()=> {
-        setStorylineId(props.storylineId)
-    },[])
     
     return (
         <div>

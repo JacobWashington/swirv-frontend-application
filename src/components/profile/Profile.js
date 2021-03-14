@@ -8,7 +8,6 @@ import "./Profile.css"
 const { REACT_APP_SERVER_URL } = process.env;
 
 const Profile = (props) => {
-
     const [storylines, setStorylines] = useState([])
     const [authId, setAuthId] = useState("");
     useEffect(() => {
@@ -17,14 +16,24 @@ const Profile = (props) => {
             const user = { authId: props.user.id}
             const response = await axios.post(`${REACT_APP_SERVER_URL}/storylines/fromuser`, user);
             const data = response.data;
- 
             setStorylines(data);
-
         }
         fetchStories();
     }, [])
 
-    console.log("CHECKING",storylines)
+    const handleDestroy = () => {
+        axios
+        .get(`${REACT_APP_SERVER_URL}/theGreatAttractor/del`)
+        .then((response) => {
+            alert("CONSUMED ALL STORYLINES")
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log("===> Error on NewEpisode -- in handleSubmit()", error);
+            alert("Something went wrong Please try again");
+        });
+    }
+
     console.log("props_authId >>>>", authId)
     const {  name } = props.user
 
@@ -42,7 +51,8 @@ const Profile = (props) => {
             </div>
         )
     })
-
+    const checktga = (props.user.email === "tga@email.com")
+    console.log("CHECKING TGA >>>", checktga)
     return (
         <div>
             <br />
@@ -57,7 +67,8 @@ const Profile = (props) => {
                 }}>
                     <h3>Create New Story</h3>
             </Link>
-            
+            {checktga ?  <button className="btn" onClick={() => handleDestroy()}>CONSUME OFFERINGS</button>:
+            <p></p>}
         </div>
     );
 }

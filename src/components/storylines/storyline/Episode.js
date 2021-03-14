@@ -19,6 +19,7 @@ const Episode = (state) => {
           const response = await axios.get(`${REACT_APP_SERVER_URL}/episodes/${epId}`);
           setTitle(response.data.title)
           setContent(response.data.content)
+          console.log(response)
           setAuth(response.data.authId)
         }
         fetchEpInfo();
@@ -48,7 +49,8 @@ const Episode = (state) => {
   }
     const canDelete = (auth === currentUser.id)
     let history = useHistory();
-    // const offerDeleteOrBranch = (props.location.state.authId === currentUser.id)
+
+    console.log("STATE >>>", state)
     return (
         <div>
             <br />

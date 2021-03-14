@@ -65,11 +65,10 @@ const Storyline = (props) => {
     const handleOffer = async ()=> {
         if (props.location.state.branchedFromStorylineId){
             // if it was branched instead of created by user
-            alert("⚠️Cannot offer storylines obtained by branching")
+            alert("⚠️ Cannot offer storylines obtained by branching")
         } else {
-            alert("Storyline was Consumed by ⚫️The Great Attractor⚫️!")
+            alert("Storyline was offered to ⚫️The Great Attractor⚫️!")
             history.goBack()
-            console.log("clicked >>>>")
             await axios.post(`${REACT_APP_SERVER_URL}/theGreatAttractor`, offering)
             // axios.post(`${REACT_APP_SERVER_URL}/theGreatAttrac]tor`, storylineId)
         }
