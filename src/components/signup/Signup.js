@@ -14,7 +14,6 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // *** Make Superuser TGA ***
   
     if (password === confirmPassword && password.length >= 8) {
       const newUser = { name, email, password };
