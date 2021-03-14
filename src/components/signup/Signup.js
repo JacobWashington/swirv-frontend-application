@@ -10,12 +10,12 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // at the beginning of a submit function
-    // make sure password and confirm password are equal
-    // password length >= 8 characters
-    console.log("clicked");
+    e.preventDefault();
+    // *** Make Superuser TGA ***
+  
     if (password === confirmPassword && password.length >= 8) {
       const newUser = { name, email, password };
       axios
@@ -23,13 +23,14 @@ const Signup = () => {
         .then((response) => {
           console.log("===> Yay, new user");
           console.log(response);
+          setRedirect(true);
         })
         .catch((error) => console.log("===> Error in Signup", error));
     } else {
       if (password !== confirmPassword) return alert("Passwords don't match");
       alert("Password needs to be at least 8 characters. Please try again.");
     }
-    return <Redirect to="/profile" /> // double check
+
   };
 
   const handleName = (e) => {
@@ -48,7 +49,7 @@ const Signup = () => {
     setConfirmPassword(e.target.value);
   };
 
-
+  if (redirect) return <Redirect to="/login" />
 
   return (
     <>

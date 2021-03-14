@@ -5,8 +5,8 @@ import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../../../utils/setAuthToken";
 import NewEpisode from '../../episodes/newEpisode/NewEpisode'
-const { REACT_APP_SERVER_URL } = process.env;
 
+const { REACT_APP_SERVER_URL } = process.env;
 
 const Storyline = (props) => {
     
@@ -61,16 +61,15 @@ const Storyline = (props) => {
     let history = useHistory();
 
     const offering = {storylineId: props.location.state._id, title: `${String(props.location.state.title)} - TGA`}
-    
+
     const handleOffer = async ()=> {
         if (props.location.state.branchedFromStorylineId){
             // if it was branched instead of created by user
-            alert("⚠️Cannot offer storylines obtained by branching")
+            alert("⚠️ Cannot offer storylines obtained by branching")
         } else {
-            alert("Storyline was Consumed by ⚫️The Great Attractor⚫️!")
+            alert("Storyline was offered to ⚫️The Great Attractor⚫️!")
             history.goBack()
-            console.log("clicked >>>>")
-            await axios.post('http://localhost:8000/swirv/theGreatAttractor', offering)
+            await axios.post(`${REACT_APP_SERVER_URL}/theGreatAttractor`, offering)
             // axios.post(`${REACT_APP_SERVER_URL}/theGreatAttrac]tor`, storylineId)
         }
     }
@@ -79,14 +78,14 @@ const Storyline = (props) => {
     console.log("FOR BRANCH >>>>", forBranch)
 
     const handleBranch = async ()=> {
-        await axios.post('http://localhost:8000/swirv/storylines/createbranch', forBranch)
+        await axios.post(`${REACT_APP_SERVER_URL}/storylines/createbranch`, forBranch)
         // axios.post(`${REACT_APP_SERVER_URL}/theGreatAttrac]tor`, storylineId)
         alert("Storyline was branched!")
         history.goBack()
     }
     
     const handleDelete = async ()=> {
-        await axios.post(`http://localhost:8000/swirv/storylines/del/${props.location.state._id}`)
+        await axios.post(`${REACT_APP_SERVER_URL}/storylines/del/${props.location.state._id}`)
         // axios.post(`${REACT_APP_SERVER_URL}/theGreatAttrac]tor`, storylineId)
         alert("Storyline was deleted!")
         history.goBack()

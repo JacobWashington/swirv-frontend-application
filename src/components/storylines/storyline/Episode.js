@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../../../utils/setAuthToken";
 
+const { REACT_APP_SERVER_URL } = process.env;
 
 const Episode = (state) => {
     const epId = state.location.state;
@@ -16,9 +16,10 @@ const Episode = (state) => {
 
     useEffect(() => {
         const fetchEpInfo = async () => {
-          const response = await axios.get(`http://localhost:8000/swirv/episodes/${epId}`);
+          const response = await axios.get(`${REACT_APP_SERVER_URL}/episodes/${epId}`);
           setTitle(response.data.title)
           setContent(response.data.content)
+          console.log(response)
           setAuth(response.data.authId)
         }
         fetchEpInfo();
@@ -41,14 +42,15 @@ const Episode = (state) => {
 
     const handleDelete = async ()=> {
       const payload = {episodeId : epId}
-      await axios.post(`http://localhost:8000/swirv/episodes/del/${epId}`, payload)
+      await axios.post(`${REACT_APP_SERVER_URL}/episodes/del/${epId}`, payload)
       alert("Episode was deleted!")
       history.goBack()
       history.goBack()
   }
     const canDelete = (auth === currentUser.id)
     let history = useHistory();
-    // const offerDeleteOrBranch = (props.location.state.authId === currentUser.id)
+
+    console.log("STATE >>>", state)
     return (
         <div>
             <br />
