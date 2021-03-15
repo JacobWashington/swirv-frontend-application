@@ -1,0 +1,12 @@
+.astory {
+    color: darkblue;
+}
+
+.astory:hover {
+    color: darkcyan;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}

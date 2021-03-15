@@ -1,6 +1,7 @@
 import StorylineCard from "../storylineCard/StorylineCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import './StorylinesList.css'
 const { REACT_APP_SERVER_URL } = process.env;
 
 const StorylinesList = (props) => {
@@ -38,7 +39,7 @@ const StorylinesList = (props) => {
   return (
     <div className="storylines-list">
       <h3>Storylines:</h3>
-      <ul>{storiesArr.length > 0 ? mappedStoryline : null}</ul>
+      <ul className="storylines">{storiesArr.length > 0 ? mappedStoryline : null}</ul>
     </div>
   );
 };

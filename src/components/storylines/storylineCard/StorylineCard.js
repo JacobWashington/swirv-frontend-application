@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import './StorylineCard.css'
 import axios from "axios";
 
 const { REACT_APP_SERVER_URL } = process.env;
@@ -30,7 +31,7 @@ const StorylineCard = (props) => {
             state: storylineId,
           }}
         >
-          {title ? <p>{title}</p> : <p>Untitled Story</p>}
+          {title ? <p className="astory">{title}</p> : <p>Untitled Story</p>}
         </Link>
       </li>
     </>
