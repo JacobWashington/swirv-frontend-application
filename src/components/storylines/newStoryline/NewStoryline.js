@@ -1,4 +1,5 @@
 import {React, useState, useEffect } from 'react';
+import { Redirect } from "react-router-dom";
 import axios from 'axios'
 const {REACT_APP_SERVER_URL} = process.env;
 
@@ -11,14 +12,22 @@ const NewStoryline = (props) => {
         setStorylineName(e.target.value)
     }
 
-    const payload = {authId: props.user._id, title:`${storylineName}`}
+    let user;
+    console.log('************ USER *********', props)
+    if (props.currentUser) {
+        user = props.currentUser
+    } else {
+        user = props.user
+    }
+
+    const payload = {authId: user.id, title:`${storylineName}`}
 
     const handleSubmit = (e) => {
         e.preventDefault()
         axios
         .post(`${REACT_APP_SERVER_URL}/storylines`, payload)
         .then((response) => {
-            // REDIRECT
+            return <Redirect to="/profile" />
         })
         .catch((error) => {
             console.log("===> Error on NewStoryline -- in handleSubmit()", error);

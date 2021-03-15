@@ -4,26 +4,31 @@ import axios from "axios";
 const { REACT_APP_SERVER_URL } = process.env;
 
 const StorylinesList = (props) => {
-  const [authId, setAuthId] = useState(props.user);
   const [storiesArr, setStoriesArr] = useState([]);
 
   let mappedStoryline;
 
   // search for all storylines where storyline.authId == authId
   // assign stories to state
+
+  let user;
+  console.log('************ USER *********', props)
+  if (props.currentUser) {
+      user = props.currentUser
+  } else {
+      user = props.user.id
+  }
+  console.log(user)
+
   useEffect(() => {
     const fetchStories = async (req, res) => {
-      if (props.auth) {
+        console.log("************ YOU MADE IT **************")
         const stories = await axios.get(
-          `${REACT_APP_SERVER_URL}/storylines/all/${props.user}`
+          `${REACT_APP_SERVER_URL}/storylines/all/${user}`
           );
+          console.log("RIGHT BEFORE SETSTORIES")
           setStoriesArr(stories.data);
-      } else {
-        const stories = await axios.get(
-          `${REACT_APP_SERVER_URL}/storylines/index`
-          );
-          setStoriesArr(stories.data);
-      }
+          console.log("RIGHT AFTER SETSTORIES")
     };
     fetchStories();
   }, []);
@@ -38,7 +43,7 @@ const StorylinesList = (props) => {
   return (
     <div className="storylines-list">
       <h3>Storylines:</h3>
-      <ul>{storiesArr.length > 0 ? mappedStoryline : null}</ul>
+      <ul>{mappedStoryline}</ul>
     </div>
   );
 };

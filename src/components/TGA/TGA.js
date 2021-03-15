@@ -8,13 +8,13 @@ const TGA = (props) => {
   console.log("TGA CURRENT USER >>>", props.currentUser.id)
   // !!!!!!!!!!! UPDATE BEFORE DEPLOYMENT !!!!!!!!!!! //
   // const [authId, setAuthId] = useState(props.currentUser.id);
-  const [authId, setAuthId] = useState('the_great_attractor');
+  const [authId, setAuthId] = useState('604db56873b61c2f301ed199');
 
   useEffect(() => {
     const fetchTGA = async (req, res) => {
       // !!!!!!!!!!! UPDATE BEFORE DEPLOYMENT !!!!!!!!!!! //
       const TGA = await axios.get(
-        `${REACT_APP_SERVER_URL}/users/${TGA_ID}`
+        `${REACT_APP_SERVER_URL}/users/604db56873b61c2f301ed199`
       );
       console.log("!!!!!!!! INSIDE TGA !!!!!!!!!!!", TGA);
       console.log(TGA.data);
@@ -29,7 +29,7 @@ const TGA = (props) => {
       <div className="background"></div>
       <div className="content">
         <p>The Great Attractor</p>
-        {authId ? <StorylinesList auth={authId} /> : null}
+        <StorylinesList currentUser={authId} />
       </div>
     </div>
   );
