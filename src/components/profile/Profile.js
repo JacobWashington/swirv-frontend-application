@@ -13,17 +13,20 @@ const Profile = (props) => {
     // REDIRECT
   };
 
+  console.log("-----PROPS-----", props)
   return (
     <>
       <div className="container">
         <div className="background"></div>
         <div className="content">
           <p>{name}'s Creations</p>
-          <StorylinesList auth={props.user._id} />
+          <StorylinesList user={props.user} />
         </div>
         <div className="actions">
           <button>
-            <Link to={{ pathname: "/newstoryline", state: props.user._id }}>BUTTON</Link>
+            <Link to={{ pathname: "/newstoryline", state: props.user }}>
+              New Storyline
+            </Link>
           </button>
         </div>
       </div>
