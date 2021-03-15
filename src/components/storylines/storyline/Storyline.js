@@ -43,7 +43,7 @@ const Storyline = (props) => {
     let branchData = {
       storylineId: storylineId,
       title: storyline.title,
-      _id: props.user.id,
+      _id: props.currentUser.id,
     };
     await axios.post(
       `${REACT_APP_SERVER_URL}/storylines/createbranch`,
@@ -57,7 +57,7 @@ const Storyline = (props) => {
     await axios.post(`${REACT_APP_SERVER_URL}/storylines/del/${storylineId}`);
   };
 
-  const isAuthor = storyline.authId === props.user._id;
+  // const isAuthor = storyline.authId === props.user.id;
 
   return (
     <div>
@@ -67,7 +67,7 @@ const Storyline = (props) => {
         <EpisodesList id={storylineId} />
       </div>
       <button>New Episode</button>
-      <button>Edit Episodes</button>
+      <button onClick={handleBranch}>Branch Storyline</button>
       <p>
         No longer want this storyline? Make an{" "}
         <div className="offering" onClick={handleOffering}>

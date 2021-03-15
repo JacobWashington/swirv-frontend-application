@@ -37,7 +37,7 @@ const StorylinesList = (props) => {
   // maps each item in storiesArr, returning a dynamic card component for each story
   if (storiesArr.length > 0) {
     mappedStoryline = storiesArr.map((storyline, index) => {
-      return <StorylineCard id={storyline._id} key={index} />;
+      return <StorylineCard user={user} id={storyline._id} key={index} />;
     });
   }
 
