@@ -12,7 +12,7 @@ const TGA = (props) => {
     const fetchTGA = async (req, res) => {
       // !!!!!!!!!!! UPDATE BEFORE DEPLOYMENT !!!!!!!!!!! //
       const TGA = await axios.get(
-        `${REACT_APP_SERVER_URL}/users/604db56873b61c2f301ed199`
+        `${REACT_APP_SERVER_URL}/users/${TGA_ID}`
       );
       console.log("!!!!!!!! INSIDE TGA !!!!!!!!!!!", TGA);
       console.log(TGA.data);

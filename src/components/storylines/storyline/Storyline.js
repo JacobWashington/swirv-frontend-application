@@ -1,11 +1,7 @@
-import { Link } from "react-router-dom";
+import "./Storyline.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-import jwt_decode from "jwt-decode";
-import setAuthToken from "../../../utils/setAuthToken";
 import EpisodesList from "../../episodes/episodesList/EpisodesList";
-
 
 const { REACT_APP_SERVER_URL } = process.env;
 
@@ -13,25 +9,11 @@ const { REACT_APP_SERVER_URL } = process.env;
 // if authId != currentUserId, option to branch
 
 const Storyline = (props) => {
-  const [currentUser, setCurrentUser] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [storylineId, setStorylineId] = useState("");
   const [storyline, setStoryline] = useState({});
 
-  useEffect(() => {
-    let token;
-    if (!localStorage.getItem("jwtToken")) {
-      setIsAuthenticated(false);
-      console.log("====> Authenticated is now FALSE");
-    } else {
-      token = jwt_decode(localStorage.getItem("jwtToken"));
-      setAuthToken(localStorage.getItem("jwtToken"));
-      setCurrentUser(token);
-    }
-  }, []);
-
   useEffect(async () => {
-      // grab storylineId from props and set it in state
+    // grab storylineId from props and set it in state
     await setStorylineId(props.id);
 
     // grab storyline obj from database and set it in state
@@ -39,49 +21,58 @@ const Storyline = (props) => {
       const storyline = await axios.get(
         `${REACT_APP_SERVER_URL}/storylines/${storylineId}`
       );
-      setStoryline(storyline)
+      setStoryline(storyline);
     };
   }, []);
 
   const handleOffering = async () => {
+    alert('Offering firing')
     let offering = {
-        storylineId: storylineId,
-        title: storyline.title,
-      };
+      storylineId: storylineId,
+      title: storyline.title,
+    };
 
-    await axios.post(`${REACT_APP_SERVER_URL}/theGreatAttractor`, offering)
-    alert(`${storyline.title} has been consumed by The Great Attractor!`)
+    await axios.post(`${REACT_APP_SERVER_URL}/theGreatAttractor`, offering);
+    alert(`${storyline.title} has been consumed by The Great Attractor!`);
 
-    // redirect...
-  }
+    // REDIRECT
+  };
 
   const handleBranch = async () => {
-      let branchData = {
-          storylineId: storylineId,
-          title: storyline.title,
-          _id: currentUser.id
-      };
+    let branchData = {
+      storylineId: storylineId,
+      title: storyline.title,
+      _id: props.currentUser._id,
+    };
     await axios.post(
       `${REACT_APP_SERVER_URL}/storylines/createbranch`,
       branchData
     );
 
-    // redirect...
+    // REDIRECT
   };
 
   const handleDelete = async () => {
-    await axios.post(
-      `${REACT_APP_SERVER_URL}/storylines/del/${storylineId}`
-    );
+    await axios.post(`${REACT_APP_SERVER_URL}/storylines/del/${storylineId}`);
   };
 
-  const isAuthor = storyline.authId === currentUser.id;
+  const isAuthor = storyline.authId === props.currentUser._id;
 
   return (
     <div>
       <p>{storyline.title}</p>
-      <p>Episodes:</p>
-      <EpisodesList id={storylineId} />
+      <div className="episodes-list">
+        <p>Episodes:</p>
+        <EpisodesList id={storylineId} />
+      </div>
+      <button>New Episode</button>
+      <button>Edit Episodes</button>
+      <p>
+        No longer want this storyline? Make an{" "}
+        <div className="offering" onClick={handleOffering}>
+          offering to The Great Attractor!
+        </div>
+      </p>
     </div>
   );
 };

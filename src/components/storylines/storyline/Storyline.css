@@ -1,0 +1,7 @@
+.offering:hover {
+    color: white;
+    cursor: pointer;
+}
+.offering {
+    color: blue;
+}
