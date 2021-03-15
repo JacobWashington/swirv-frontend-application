@@ -23,6 +23,7 @@ const Storyline = (props) => {
       );
       setStoryline(storyline);
     };
+    fetchStoryline();
   }, []);
 
   const handleOffering = async () => {
@@ -42,7 +43,7 @@ const Storyline = (props) => {
     let branchData = {
       storylineId: storylineId,
       title: storyline.title,
-      _id: props.user._id,
+      _id: props.user.id,
     };
     await axios.post(
       `${REACT_APP_SERVER_URL}/storylines/createbranch`,

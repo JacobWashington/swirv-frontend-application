@@ -25,7 +25,7 @@ const Profile = (props) => {
         <div className="actions">
           <button>
             <Link to={{ pathname: "/newstoryline", state: props.user }}>
-              BUTTON
+              New Storyline
             </Link>
           </button>
         </div>
