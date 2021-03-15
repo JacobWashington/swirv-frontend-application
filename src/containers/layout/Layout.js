@@ -13,6 +13,7 @@ import About from "../../components/about/About";
 import NewEpisode from "../../components/episodes/newEpisode/NewEpisode";
 import NewStoryline from "../../components/storylines/newStoryline/NewStoryline";
 import TGA from "../../components/TGA/TGA";
+import FeaturedList from "../../components/featuredList/FeaturedList";
 
 const Layout = (props) => {
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -78,6 +79,7 @@ const Layout = (props) => {
           )}
         />
         <Route path="/signup" component={Signup} />
+        <Route path="/featuredlist" component={FeaturedList} />
         <Route path="/about" component={About} />
         <Route path="/newepisode" component={NewEpisode} />
         <Route path="/newstoryline" component={NewStoryline} />

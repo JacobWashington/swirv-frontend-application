@@ -34,7 +34,7 @@ const Navbar = (props) => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" exact to="/storylines">
+                <NavLink className="nav-link" exact to="/featuredlist">
                   🖊Featured Storylines
                 </NavLink>
               </li>
