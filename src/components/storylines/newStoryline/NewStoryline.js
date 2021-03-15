@@ -11,7 +11,7 @@ const NewStoryline = (props) => {
         setStorylineName(e.target.value)
     }
 
-    const payload = {authId: props.currentUser._id, title:`${storylineName}`}
+    const payload = {authId: props.user._id, title:`${storylineName}`}
 
     const handleSubmit = (e) => {
         e.preventDefault()

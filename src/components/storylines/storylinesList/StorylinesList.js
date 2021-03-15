@@ -4,7 +4,7 @@ import axios from "axios";
 const { REACT_APP_SERVER_URL } = process.env;
 
 const StorylinesList = (props) => {
-  const [authId, setAuthId] = useState(props.auth);
+  const [authId, setAuthId] = useState(props.user);
   const [storiesArr, setStoriesArr] = useState([]);
 
   let mappedStoryline;
@@ -15,7 +15,7 @@ const StorylinesList = (props) => {
     const fetchStories = async (req, res) => {
       if (props.auth) {
         const stories = await axios.get(
-          `${REACT_APP_SERVER_URL}/storylines/all/${props.auth}`
+          `${REACT_APP_SERVER_URL}/storylines/all/${props.user}`
           );
           setStoriesArr(stories.data);
       } else {
