@@ -4,7 +4,6 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../../utils/setAuthToken";
 
-
 // Import Components
 import Navbar from "../../components/navbar/Navbar";
 import Login from "../../components/login/Login";
@@ -13,10 +12,9 @@ import Profile from "../../components/profile/Profile";
 import About from "../../components/about/About";
 import NewEpisode from "../../components/episodes/newEpisode/NewEpisode";
 import NewStoryline from "../../components/storylines/newStoryline/NewStoryline";
-import StorylineView from "../../components/storylines/storyline/StorylineView";
+import Storyline from "../../components/storylines/storyline/Storyline";
 import TGA from "../../components/TGA/TGA";
-
-
+import FeaturedList from "../../components/featuredList/FeaturedList";
 
 const Layout = (props) => {
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -82,10 +80,16 @@ const Layout = (props) => {
           )}
         />
         <Route path="/signup" component={Signup} />
+        <Route path="/featuredlist" component={FeaturedList} />
         <Route path="/about" component={About} />
-        <Route path="/newepisode" component={NewEpisode} />
-        <Route path="/newstoryline" component={NewStoryline} />
-        <Route path="/tga" component={TGA} />
+        <Route path="/newepisode" render={() => <NewEpisode currentUser={currentUser}/>} />
+        <Route path="/newstoryline" render={() => <NewStoryline currentUser={currentUser}/>} />
+        <Route path="/storyline" render={() => <Storyline currentUser={currentUser}/>} />
+        <Route path="/thegreatattractor" render={() => <TGA currentUser={currentUser}/>} />
+        {/* <Route
+          path="/episode"
+          component={(...props) => <SomeComponent user={currentUser} />}
+        /> */}
 
         <PrivateRoute
           path="/profile"
@@ -93,7 +97,6 @@ const Layout = (props) => {
           user={currentUser}
           handleLogout={handleLogout}
         />
-        <StorylineView />
       </Switch>
     </div>
   );

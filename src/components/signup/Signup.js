@@ -14,7 +14,6 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // *** Make Superuser TGA ***
   
     if (password === confirmPassword && password.length >= 8) {
       const newUser = { name, email, password };
@@ -54,15 +53,13 @@ const Signup = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div class="box">
+        <div className="box">
           <h1>Signup</h1>
 
           <input
             type="text"
             name="name"
             placeholder="Name"
-            onFocus="field_focus(this, 'name');"
-            onblur="field_blur(this, 'name');"
             className="form_input"
             onChange={handleName}
           />
@@ -71,8 +68,6 @@ const Signup = () => {
             type="email"
             name="email"
             placeholder="Email"
-            onFocus="field_focus(this, 'email');"
-            onblur="field_blur(this, 'email');"
             className="form_input"
             onChange={handleEmail}
           />
@@ -81,8 +76,6 @@ const Signup = () => {
             type="password"
             name="password"
             placeholder="Password"
-            onFocus="field_focus(this, 'password');"
-            onblur="field_blur(this, 'password');"
             className="form_input"
             onChange={handlePassword}
           />
@@ -91,8 +84,6 @@ const Signup = () => {
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
-            onFocus="field_focus(this, 'confirmPassword');"
-            onblur="field_blur(this, 'confirmPassword');"
             className="form_input"
             onChange={handleConfirmPassword}
           />

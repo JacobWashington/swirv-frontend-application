@@ -1,4 +1,4 @@
-.background {
+/* .background {
   position: absolute;
   top: 10vh;
   background-color: aliceblue;
@@ -7,16 +7,28 @@
   width: 90vw;
   height: 65vh;
   left: calc(50% - 45vw);
+} */
+
+
+.img {
+  height: 280px;
 }
 
 .content {
   z-index: 1;
   position: relative;
   top: 2vh;
+
+  background-color: aliceblue;
+  opacity: 0.9;
+  border-radius:10px;
+  padding-bottom: 2%;
 }
+
 
 .description {
   width: 75vw;
+  max-width: 80%;
   margin-left: auto;
   margin-right: auto;
   font-weight: bold;
@@ -24,7 +36,7 @@
 }
 
 @media only screen and (min-width: 600px) {
-  .background {
+  /* .background {
     position: absolute;
     top: 12vh;
     background-color: aliceblue;
@@ -32,8 +44,12 @@
     width: 45vw;
     height: 50vh;
     left: calc(50% - 22.5vw);
-  }
+  } */
+  
 
+  .container {
+    width: 70%;
+  }
   .content {
     z-index: 1;
     position: relative;

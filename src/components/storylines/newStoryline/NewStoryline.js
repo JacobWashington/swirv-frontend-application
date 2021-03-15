@@ -1,48 +1,24 @@
 import {React, useState, useEffect } from 'react';
 import axios from 'axios'
-import { useHistory } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import setAuthToken from "../../../utils/setAuthToken";
 const {REACT_APP_SERVER_URL} = process.env;
 
 
 const NewStoryline = (props) => {
-    console.log("PROPS >>>", props)
-    const userId = props.location.state.id
-    console.log("USER ID >>>>>", userId)
     const [storylineName, setStorylineName] = useState("");
-    let history = useHistory();
-
-    const [currentUser, setCurrentUser] = useState("");
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
-  
-    useEffect(() => {
-      let token;
-      if (!localStorage.getItem("jwtToken")) {
-        setIsAuthenticated(false);
-        console.log("====> Authenticated is now FALSE");
-      } else {
-        token = jwt_decode(localStorage.getItem("jwtToken"));
-        setAuthToken(localStorage.getItem("jwtToken"));
-        setCurrentUser(token);
-      }
-    }, []);
-    console.log("CURRENT USER >>>", currentUser)
 
     
     const handleStorylineName = (e) => {
         setStorylineName(e.target.value)
     }
 
-    const infoForStoryline = {authId: userId, title:`${storylineName} - by ${currentUser.name}`}
+    const payload = {authId: props.currentUser._id, title:`${storylineName}`}
 
     const handleSubmit = (e) => {
         e.preventDefault()
         axios
-        .post(`${REACT_APP_SERVER_URL}/storylines`, infoForStoryline)
+        .post(`${REACT_APP_SERVER_URL}/storylines`, payload)
         .then((response) => {
-            console.log(response)
-            history.goBack()
+            // REDIRECT
         })
         .catch((error) => {
             console.log("===> Error on NewStoryline -- in handleSubmit()", error);
@@ -50,10 +26,14 @@ const NewStoryline = (props) => {
         });
     }
 
+    const goBack = (e) => {
+        // REDIRECT
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <div class="box">
+                <div className="box">
                     <h1>Create New Storyline</h1>
                     <input
                     type="text"
@@ -63,7 +43,7 @@ const NewStoryline = (props) => {
                     onChange={handleStorylineName}                    
                     />            
                     <button type="submit" id="btn">Submit</button>
-                    <button className="btn" onClick={() => history.goBack()}>Cancel</button>
+                    <button className="btn" onClick={goBack}>Cancel</button>
                 </div>
             </form>
         </div>

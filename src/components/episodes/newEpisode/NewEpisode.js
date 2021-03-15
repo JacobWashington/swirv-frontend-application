@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 const {REACT_APP_SERVER_URL} = process.env;
 
 const NewEpisode = (props) => {
-    console.log("STORYLINE ID >>>", props.location.state._id)
     const [episodeName, setEpisodeName] = useState("");
     const [content, setContent] = useState("");
     let history = useHistory();
@@ -21,14 +20,13 @@ const NewEpisode = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const creating = {authId: props.location.state.authId, storylineId: props.location.state._id, title: episodeName, content: content}
+        const payload = {authId: props.currentUser._id, storylineId: props.storyline._id, title: episodeName, content: content}
         
         axios
-        .post(`${REACT_APP_SERVER_URL}/episodes/`, creating)
+        .post(`${REACT_APP_SERVER_URL}/episodes/`, payload)
         .then((response) => {
             console.log(response)
-            history.goBack()
-            history.goBack()
+            // REDIRECT 
 
         })
         .catch((error) => {
@@ -36,8 +34,6 @@ const NewEpisode = (props) => {
             alert("Something went wrong Please try again");
         });
     }
-    
-    console.log("NEWEPISODE.js - PROPS.USER>>>>>", props)
     
     return (
         <div>

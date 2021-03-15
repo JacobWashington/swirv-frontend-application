@@ -1,47 +1,38 @@
-import axios from 'axios';
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import "./TGA.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import StorylinesList from "../storylines/storylinesList/StorylinesList";
+const { REACT_APP_SERVER_URL, TGA_ID } = process.env;
 
 const TGA = (props) => {
+  console.log("TGA CURRENT USER >>>", props.currentUser.id)
+  // !!!!!!!!!!! UPDATE BEFORE DEPLOYMENT !!!!!!!!!!! //
+  // const [authId, setAuthId] = useState(props.currentUser.id);
+  const [authId, setAuthId] = useState('the_great_attractor');
 
-    const [storylines, setStorylines] = useState([])
-    useEffect(() => {
-        const fetchStories = async () => {
-            const response = await axios.get('http://localhost:8000/swirv/theGreatAttractor');
-            const data = response.data;
- 
-            setStorylines(data);
-        }
-        fetchStories();
-    }, [])
+  useEffect(() => {
+    const fetchTGA = async (req, res) => {
+      // !!!!!!!!!!! UPDATE BEFORE DEPLOYMENT !!!!!!!!!!! //
+      const TGA = await axios.get(
+        `${REACT_APP_SERVER_URL}/users/${TGA_ID}`
+      );
+      console.log("!!!!!!!! INSIDE TGA !!!!!!!!!!!", TGA);
+      console.log(TGA.data);
+      setAuthId(TGA.data._id);
+    };
+    fetchTGA();
+  }, []);
 
-    console.log("CHECKING",storylines)
 
-    const storyline = storylines.map((storyline, index)=> {
-        return (
-            <div className="link">
-                <Link to={{
-                    pathname: "/storyline",
-                    state: storyline
-                }}
-                key={index}
-                >
-                    <h3>{storyline.title}</h3>
-                </Link>
-            </div>
-        )
-    })
-
-    return (
-        <div>
-            <br />
-            <h2>The Great Attractor</h2>
-            <br />
-            <h3>Storylines:</h3>
-            {storyline.length ? storyline : <p>Need more offerings...</p>}
-        </div>
-    );
-}
+  return (
+    <div className="container">
+      <div className="background"></div>
+      <div className="content">
+        <p>The Great Attractor</p>
+        {authId ? <StorylinesList auth={authId} /> : null}
+      </div>
+    </div>
+  );
+};
 
 export default TGA;
