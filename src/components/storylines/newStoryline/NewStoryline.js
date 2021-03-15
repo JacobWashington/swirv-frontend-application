@@ -45,6 +45,7 @@ const NewStoryline = (props) => {
   };
 
   if (submit) return <Redirect to="/profile" />
+  
 
   return (
     <div>
