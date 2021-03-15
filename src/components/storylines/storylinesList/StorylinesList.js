@@ -1,6 +1,7 @@
 import StorylineCard from "../storylineCard/StorylineCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import './StorylinesList.css'
 const { REACT_APP_SERVER_URL } = process.env;
 
 const StorylinesList = (props) => {
