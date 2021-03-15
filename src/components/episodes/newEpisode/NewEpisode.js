@@ -20,7 +20,7 @@ const NewEpisode = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const payload = {authId: props.currentUser._id, storylineId: props.storyline._id, title: episodeName, content: content}
+        const payload = {authId: props.user._id, storylineId: props.storyline._id, title: episodeName, content: content}
         
         axios
         .post(`${REACT_APP_SERVER_URL}/episodes/`, payload)

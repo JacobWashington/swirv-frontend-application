@@ -86,10 +86,6 @@ const Layout = (props) => {
         <Route path="/newstoryline" render={() => <NewStoryline currentUser={currentUser}/>} />
         <Route path="/storyline" render={() => <Storyline currentUser={currentUser}/>} />
         <Route path="/thegreatattractor" render={() => <TGA currentUser={currentUser}/>} />
-        {/* <Route
-          path="/episode"
-          component={(...props) => <SomeComponent user={currentUser} />}
-        /> */}
 
         <PrivateRoute
           path="/profile"

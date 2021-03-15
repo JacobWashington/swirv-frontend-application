@@ -42,7 +42,7 @@ const Storyline = (props) => {
     let branchData = {
       storylineId: storylineId,
       title: storyline.title,
-      _id: props.currentUser._id,
+      _id: props.user._id,
     };
     await axios.post(
       `${REACT_APP_SERVER_URL}/storylines/createbranch`,
@@ -56,7 +56,7 @@ const Storyline = (props) => {
     await axios.post(`${REACT_APP_SERVER_URL}/storylines/del/${storylineId}`);
   };
 
-  const isAuthor = storyline.authId === props.currentUser._id;
+  const isAuthor = storyline.authId === props.user._id;
 
   return (
     <div>
