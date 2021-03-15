@@ -13,7 +13,6 @@ const StorylinesList = (props) => {
   // assign stories to state
 
   let user;
-  console.log('************ USER *********', props)
   if (props.currentUser) {
       user = props.currentUser
   } else {

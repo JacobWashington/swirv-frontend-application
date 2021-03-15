@@ -59,7 +59,7 @@ const NewStoryline = (props) => {
             className="form_input"
             onChange={handleStorylineName}
           />
-          <button type="submit" id="btn">
+          <button className="btn" type="submit" id="btn">
             Submit
           </button>
           <button className="btn" onClick={goBack}>

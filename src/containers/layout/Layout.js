@@ -80,7 +80,7 @@ const Layout = (props) => {
           )}
         />
         <Route path="/signup" component={Signup} />
-        <Route path="/featuredlist" component={FeaturedList} />
+        <Route path="/featuredlist" render={() => <FeaturedList currentUser={currentUser}/>} />
         <Route path="/about" component={About} />
         <Route path="/newepisode" render={() => <NewEpisode currentUser={currentUser}/>} />
         <Route path="/newstoryline" render={() => <NewStoryline currentUser={currentUser}/>} />
