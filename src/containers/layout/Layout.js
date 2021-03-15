@@ -14,6 +14,7 @@ import NewEpisode from "../../components/episodes/newEpisode/NewEpisode";
 import NewStoryline from "../../components/storylines/newStoryline/NewStoryline";
 import Storyline from "../../components/storylines/storyline/Storyline";
 import TGA from "../../components/TGA/TGA";
+import FeaturedList from "../../components/featuredList/FeaturedList";
 
 const Layout = (props) => {
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -79,6 +80,7 @@ const Layout = (props) => {
           )}
         />
         <Route path="/signup" component={Signup} />
+        <Route path="/featuredlist" component={FeaturedList} />
         <Route path="/about" component={About} />
         <Route path="/newepisode" render={() => <NewEpisode currentUser={currentUser}/>} />
         <Route path="/newstoryline" render={() => <NewStoryline currentUser={currentUser}/>} />

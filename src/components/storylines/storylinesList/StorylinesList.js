@@ -13,10 +13,17 @@ const StorylinesList = (props) => {
   // assign stories to state
   useEffect(() => {
     const fetchStories = async (req, res) => {
-      const stories = await axios.get(
-        `${REACT_APP_SERVER_URL}/storylines/all/${props.auth}`
-      );
-      setStoriesArr(stories.data);
+      if (props.auth) {
+        const stories = await axios.get(
+          `${REACT_APP_SERVER_URL}/storylines/all/${props.auth}`
+          );
+          setStoriesArr(stories.data);
+      } else {
+        const stories = await axios.get(
+          `${REACT_APP_SERVER_URL}/storylines/index`
+          );
+          setStoriesArr(stories.data);
+      }
     };
     fetchStories();
   }, []);

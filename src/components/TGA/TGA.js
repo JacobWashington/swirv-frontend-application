@@ -5,8 +5,10 @@ import StorylinesList from "../storylines/storylinesList/StorylinesList";
 const { REACT_APP_SERVER_URL, TGA_ID } = process.env;
 
 const TGA = (props) => {
+  console.log("TGA CURRENT USER >>>", props.currentUser.id)
   // !!!!!!!!!!! UPDATE BEFORE DEPLOYMENT !!!!!!!!!!! //
-  const [authId, setAuthId] = useState("");
+  // const [authId, setAuthId] = useState(props.currentUser.id);
+  const [authId, setAuthId] = useState('the_great_attractor');
 
   useEffect(() => {
     const fetchTGA = async (req, res) => {
@@ -20,6 +22,7 @@ const TGA = (props) => {
     };
     fetchTGA();
   }, []);
+
 
   return (
     <div className="container">
