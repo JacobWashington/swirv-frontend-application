@@ -21,13 +21,13 @@ const Profile = (props) => {
         <div className="content">
           <p>{name}'s Creations</p>
           <StorylinesList user={props.user} />
-        </div>
-        <div className="actions">
-          <button>
+          <div className="actions">
+          <button className="btn">
             <Link to={{ pathname: "/newstoryline", state: props.user }}>
               New Storyline
             </Link>
           </button>
+        </div>
         </div>
       </div>
     </>
