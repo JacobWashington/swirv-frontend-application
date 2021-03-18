@@ -22,7 +22,7 @@ const App = (props) => {
           interactivity: {
             events: {
               onhover: {
-                enable: false,
+                enable: true,
                 mode: "repulse",
               },
             },
