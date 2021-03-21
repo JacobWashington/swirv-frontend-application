@@ -9,11 +9,13 @@
     left: calc(50% - 45vw);
   } */
   
-  .content {
-    z-index: 1;
-    position: relative;
-    top: 2vh;
-    width: 45vw;
+  .tga-content {
+    padding-bottom: 2vh;
+    margin: 0 auto;
+    background-color: aliceblue;
+    opacity: 0.9;
+    width: 80vw;
+    border-radius: 10px;
   }
   
   .link {
@@ -35,7 +37,7 @@
       left: calc(50% - 22.5vw);
     } */
   
-    .content {
+    .tga-content {
       z-index: 1;
       position: relative;
       top: 2vh;

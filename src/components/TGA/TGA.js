@@ -14,9 +14,9 @@ const TGA = (props) => {
   } else greatAttractor = "the_great_attractor";
 
   return (
-    <div className="container">
-      <div className="background"></div>
-      <div className="content">
+    <div className="tga-container">
+      <div className="tga-background"></div>
+      <div className="tga-content">
         <p>The Great Attractor</p>
         <StorylinesList currentUser={greatAttractor} />
       </div>
