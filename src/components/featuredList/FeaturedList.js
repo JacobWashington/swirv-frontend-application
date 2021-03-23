@@ -6,9 +6,9 @@ import StorylineList from "../storylines/storylinesList/StorylinesList";
 const FeaturedList = (props) => {
   console.log("#######################",props.currentUser)
     return (
-        <div className="container">
-        <div className="background"></div>
-        <div className="content">
+        <div className="featuredlist-container">
+        <div className="featuredlist-background"></div>
+        <div className="featuredlist-content">
           <StorylineList currentUser={props.currentUser.id}/>
         </div>
       </div>

@@ -41,7 +41,7 @@ const StorylinesList = (props) => {
   }
 
   return (
-    <div className="storylines-list">
+    <div className="storylineslist-content">
       <h3>Storylines:</h3>
       <ul>{mappedStoryline}</ul>
     </div>
